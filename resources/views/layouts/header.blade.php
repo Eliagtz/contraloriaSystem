@@ -12,7 +12,7 @@
     <ul class="nav navbar-nav ml-auto mr-3">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img class="img-avatar mx-1" src="{{Auth::user()->avatar_url}}">
+                <img class="img-avatar mx-1" src="{{Auth::user()->photo}}">
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow mt-2">
                 <a class="dropdown-item">
