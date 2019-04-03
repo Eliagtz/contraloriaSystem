@@ -18,3 +18,6 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Period Resource
+Route::resource('period', 'PeriodController');

@@ -84,4 +84,12 @@ class User extends Authenticatable
         return false;
     }
 
+     /**
+     * Get the periods for the user.
+     */
+    public function periods()
+    {
+        return $this->hasMany('App\Period');
+    }
+
 }
