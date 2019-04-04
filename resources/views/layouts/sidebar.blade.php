@@ -6,16 +6,28 @@
                     <i class="nav-icon icon-speedometer"></i> Dashboard
                 </a>
             </li>
-            <li class="nav-title">Settings</li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="nav-icon icon-user"></i> Users
+            <li class="nav-item nav-dropdown ">
+                <a class="nav-link nav-dropdown-toggle"  href="#">
+                    <i class="icon-calendar "></i>
+                    Periods
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="nav-icon icon-lock"></i> Roles
-                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('period.create') }}">
+                        <i class="icon-plus  "></i>
+                        Add New Period
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="icon-layers "></i>
+                            Show Periods
+                        </a>
+                    </li>
+                </ul>
+               <!-- <a class="nav-link" href="{{ route('period.create') }}">
+                    <i class="nav-icon icon-lock"></i> Periods
+                </a>-->
             </li>
         </ul>
     </nav>

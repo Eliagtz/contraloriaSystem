@@ -15,13 +15,13 @@ class CreatePeriodsTable extends Migration
     {
         Schema::create('periods', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned;
+            $table->integer('user_id')->unsigned();
             $table->date('start');
             $table->date('end');
             $table->string('description');
             $table->boolean('status')->default(1);
             $table->float('initial_fund')->nullable();
-            $table->float('final_fund');
+            $table->float('final_fund')->nullable();
             $table->timestamps();
         });
 

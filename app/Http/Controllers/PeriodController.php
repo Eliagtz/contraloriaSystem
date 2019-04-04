@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Period;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PeriodController extends Controller
 {
@@ -34,7 +36,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        return view('period\periodForm');
+        return view('period.periodForm');
     }
 
     /**
@@ -45,7 +47,11 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validatorPeriod($request->all())->validate();
+        $period = new Period($request->all());
+        $user = User::find($request->user()->id);
+        $user->periods()->save($period);
+        return back()->with('Success', 'Period has been created success');
     }
 
     /**
@@ -91,5 +97,22 @@ class PeriodController extends Controller
     public function destroy(Period $period)
     {
         //
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validatorPeriod(array $data)
+    {
+        return Validator::make($data, [
+            'start' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:yesterday'],
+            'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
+            'description' => ['required', 'string', 'min:30', 'max:255'],
+            'initial_fund' => ['required'],
+            'final_fund' => ['required'],
+        ]);
     }
 }
