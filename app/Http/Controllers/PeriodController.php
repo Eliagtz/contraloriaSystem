@@ -50,6 +50,7 @@ class PeriodController extends Controller
     {
         $this->validatorPeriod($request->all())->validate();
         $period = new Period($request->all());
+        $period->final_fund = $request->initial_fund;
         $user = User::find($request->user()->id);
         $user->periods()->save($period);
         return back()->with('Success', 'Period has been created success');
@@ -113,7 +114,6 @@ class PeriodController extends Controller
             'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
             'description' => ['required', 'string', 'min:30', 'max:255'],
             'initial_fund' => ['required'],
-            'final_fund' => ['required'],
         ]);
     }
 }

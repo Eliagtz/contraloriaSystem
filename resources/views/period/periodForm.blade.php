@@ -66,18 +66,6 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="final_fund">Final fund</label>
-                                <div class="col-md-9">
-                                    <input class="form-control{{ $errors->has('final_fund') ? ' is-invalid' : '' }}" id="final_fund" type="number" name="final_fund" placeholder="$ Final fund.." value="{{ old('final_fund') }}">
-                                    <span class="help-block">Please enter the ending fund of period</span>
-                                    @if ($errors->has('final_fund'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('final_fund') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3"></div>
