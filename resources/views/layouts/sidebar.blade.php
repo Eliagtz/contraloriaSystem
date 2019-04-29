@@ -26,6 +26,26 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item nav-dropdown ">
+                    <a class="nav-link nav-dropdown-toggle"  href="#">
+                        <i class="fas fa-coins"></i>
+                        Expenses
+                    </a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('period.create') }}">
+                            <i class="icon-plus  "></i>
+                            Add New Expense
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('period.index') }}">
+                                <i class="fas fa-balance-scale"></i>
+                                Show Expenses
+                            </a>
+                        </li>
+                    </ul>
+            </li>
         </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
