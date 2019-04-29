@@ -25,9 +25,6 @@
                         </a>
                     </li>
                 </ul>
-               <!-- <a class="nav-link" href="{{ route('period.create') }}">
-                    <i class="nav-icon icon-lock"></i> Periods
-                </a>-->
             </li>
         </ul>
     </nav>

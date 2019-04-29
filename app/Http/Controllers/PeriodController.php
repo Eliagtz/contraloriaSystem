@@ -26,7 +26,7 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        $periods = Period::all();
+        $periods = Period::with(['user'])->get();
         return view('period.periodIndex', compact('periods'));
     }
 
@@ -64,7 +64,7 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
-        
+        return view('period.periodShow', compact('period'));
     }
 
     /**
@@ -75,7 +75,7 @@ class PeriodController extends Controller
      */
     public function edit(Period $period)
     {
-        //
+        return view('period.periodForm', compact('period'));
     }
 
     /**
@@ -87,7 +87,10 @@ class PeriodController extends Controller
      */
     public function update(Request $request, Period $period)
     {
-        //
+        $this->validatorPeriodEdit($request->all())->validate();
+        $period->final_fund = $request->initial_fund;
+        $period->fill($request->all())->save();
+        return redirect()->route('period.show', $period->id);
     }
 
     /**
@@ -98,7 +101,9 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
-        //
+        $period->status = 0;
+        $period->save();
+        return redirect()->route('period.index');
     }
 
     /**
@@ -116,4 +121,16 @@ class PeriodController extends Controller
             'initial_fund' => ['required'],
         ]);
     }
+    protected function validatorPeriodEdit(array $data)
+    {
+        return Validator::make($data, [
+            'start' => ['date', 'date_format:Y-m-d', 'after_or_equal:yesterday'],
+            'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
+            'description' => ['required', 'string', 'min:30', 'max:255'],
+            'initial_fund' => ['required'],
+        ]);
+    }
+
+    
+
 }
