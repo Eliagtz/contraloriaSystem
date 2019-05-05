@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Period;
 use App\Expense;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,12 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Period $period)
     {
-        //
+
+        $expenses = $period->expenses;
+
+        return view('expense.expenseIndex', compact('expenses'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('expense.expenseForm');
     }
 
     /**
@@ -81,5 +85,14 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         //
+    }
+
+    protected function validatorExpense(array $data)
+    {
+        return Validator::make($data, [
+            'quantity' => ['required', 'integer' ],
+            'concept' => ['required', 'string', 'min:30', 'max:255'],
+            'movement_type' => ['required'],
+        ]);
     }
 }

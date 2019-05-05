@@ -6,7 +6,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Period Form</strong>
+                        <strong>New Period</strong>
                     </div>
                     <div class="card-body">
                         @if(session()->has('Success'))

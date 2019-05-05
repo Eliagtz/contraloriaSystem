@@ -3,7 +3,7 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" href="/dashboard">
-                    <i class="nav-icon icon-speedometer"></i> Dashboard
+                    <i class="nav-icon icon-menu"></i> Main menu
                 </a>
             </li>
             <li class="nav-item nav-dropdown ">
@@ -26,7 +26,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item nav-dropdown ">
+            <!-- <li class="nav-item nav-dropdown ">
                     <a class="nav-link nav-dropdown-toggle"  href="#">
                         <i class="fas fa-coins"></i>
                         Expenses
@@ -45,7 +45,7 @@
                             </a>
                         </li>
                     </ul>
-            </li>
+            </li> -->
         </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>

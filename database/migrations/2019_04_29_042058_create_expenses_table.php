@@ -15,8 +15,14 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('');
+            $table->integer('period_id')->unsigned();
+            $table->float('quantity');
+            $table->string('concept');
+           // $table->string('movement_type');
             $table->timestamps();
+        });
+        Schema::table('expenses', function (Blueprint $table){
+            $table->foreign('period_id')->references('id')->on('periods')->onUpdate('cascade');
         });
     }
 
