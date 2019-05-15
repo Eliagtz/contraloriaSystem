@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-12">
-        @if (count($expenses)>0)
+        @if (count($period->expenses)>0)
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="row">
@@ -25,7 +25,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($expenses as $expense)
+                                @foreach ($period->expenses as $expense)
                                     <tr>
                                         <td>{{ $expense->id }}</td>
                                         <td>{{ $expense->concept }}</td>
@@ -43,7 +43,7 @@
                 <h1 class="display-4">There's no data</h1>
                 <p class="lead">Do you want add new expense?</p>
                 <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{{ route('expense.create') }}" role="button">Create</a>
+                <a class="btn btn-primary btn-lg" href="{{ route('expense.create', $period->id) }}" role="button">Create</a>
                 </p>
             </div>
         @endif

@@ -18,7 +18,7 @@ class CreateExpensesTable extends Migration
             $table->integer('period_id')->unsigned();
             $table->float('quantity');
             $table->string('concept');
-           // $table->string('movement_type');
+            $table->string('movement_type');
             $table->timestamps();
         });
         Schema::table('expenses', function (Blueprint $table){

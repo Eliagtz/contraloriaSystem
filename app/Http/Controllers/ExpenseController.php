@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Period;
 use App\Expense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ExpenseController extends Controller
 {
@@ -16,9 +17,9 @@ class ExpenseController extends Controller
     public function index(Period $period)
     {
 
-        $expenses = $period->expenses;
+        $period->load('expenses');
 
-        return view('expense.expenseIndex', compact('expenses'));
+        return view('expense.expenseIndex', compact('period'));
     }
 
     /**
@@ -26,9 +27,9 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Period $period)
     {
-        return view('expense.expenseForm');
+        return view('expense.expenseForm', compact('period'));
     }
 
     /**
@@ -39,7 +40,11 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validatorExpense($request->all())->validate();
+        $expense = new Expense($request->all());
+        $period = Period::find($request->period_id);
+        $period->expenses()->save($expense);
+        return back()->with('Success', 'Expense has been created success');
     }
 
     /**
@@ -90,7 +95,8 @@ class ExpenseController extends Controller
     protected function validatorExpense(array $data)
     {
         return Validator::make($data, [
-            'quantity' => ['required', 'integer' ],
+            'period_id' => ['exists:periods,id', 'required'],
+            'quantity' => ['required'],
             'concept' => ['required', 'string', 'min:30', 'max:255'],
             'movement_type' => ['required'],
         ]);

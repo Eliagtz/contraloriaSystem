@@ -14,11 +14,10 @@
                         </div>
                     @endif
                     @if(Auth::user()->hasRole('Administrator'))
-                    <div>Acceso como administrador</div>
+                    <div>You are logged in like administrator!</div>
                     @else 
-                    <div>Acceso usuario</div>
+                    <div>You are logged in like simple user!</div>
                     @endif
-                    You are logged in!
                 </div>
             </div>
         </div>
