@@ -55,7 +55,7 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
-        //
+        return view('expense.expenseShow', compact('expense'));
     }
 
     /**
@@ -66,7 +66,8 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        $period = $expense->period;
+        return view('expense.expenseForm', compact('expense', 'period'));
     }
 
     /**

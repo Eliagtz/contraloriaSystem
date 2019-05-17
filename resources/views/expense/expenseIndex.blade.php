@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4"></div>
-                        <div class="col-4"><a class="btn btn-outline-primary btn-block btn-lg" href="{{ route('expense.create') }}" role="button">New expense</a></div>
+                        <div class="col-4"><a class="btn btn-outline-primary btn-block btn-lg" href="{{ route('expense.create', $period->id) }}" role="button">New expense</a></div>
                     </div>
                     <br>
 
@@ -30,7 +30,7 @@
                                         <td>{{ $expense->id }}</td>
                                         <td>{{ $expense->concept }}</td>
                                         <td>{{ $expense->created_at }}</td>
-                                        <td><a href="#" class="btn btn-outline-dark"><i class="icon-list"></i></a></td>
+                                        <td><a href=" {{ route('expense.show', $expense->id) }} " class="btn btn-outline-dark"><i class="icon-list"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

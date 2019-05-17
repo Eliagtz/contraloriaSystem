@@ -26,7 +26,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="quantity">Total $:</label>
                                 <div class="col-md-9">
-                                    <input class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" type="float" name="quantity" placeholder="Expense quantity..">
+                                <input class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" type="float" name="quantity" placeholder="Expense quantity.." value="{{ isset($expense) ? $expense->quantity : old('quantity') }}">
                                         <span class="help-block">Please enter the expense quantity</span>
                                         @if ($errors->has('quantity'))
                                         <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="concept">Concept:</label>
                                 <div class="col-md-9">
-                                    <input class="form-control{{ $errors->has('concept') ? ' is-invalid' : '' }}" id="concept" type="string" name="concept" placeholder="Concept..">
+                                    <input class="form-control{{ $errors->has('concept') ? ' is-invalid' : '' }}" id="concept" type="string" name="concept" placeholder="Concept.." value="{{ isset($expense) ? $expense->concept : old('concept') }}">
                                         <span class="help-block">Please enter the expense concept</span>
                                         @if ($errors->has('concept'))
                                         <span class="invalid-feedback" role="alert">
@@ -50,14 +50,14 @@
                         <div class="form-group row">
                             <label for="movementType" class="col-md-3 col-form-label">Movement Type:</label>
                             <div class="col-md-9">
-                                <select name="movement_type" class="custom-select custom-select mb-3 {{ $errors->has('concept') ? ' is-invalid' : '' }}">
+                                <select name="movement_type" class="custom-select custom-select mb-3 {{ $errors->has('movement_type') ? ' is-invalid' : '' }}">
                                     <option value="0" selected>Cash</option>
                                     <option value="1">Card</option>
                                     <option value="2">Check</option>
                                 </select>
-                                @if ($errors->has('concept'))
+                                @if ($errors->has('movement_type'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('concept') }}</strong>
+                                    <strong>{{ $errors->first('movement_type') }}</strong>
                                 </span>
                                 @endif
                             </div>
