@@ -26,3 +26,8 @@ Route::resource('period', 'PeriodController');
 Route::resource('expense', 'ExpenseController', ['except' => ['create']]);
 Route::get('expense/create/{period}', 'ExpenseController@create')->name('expense.create');
 Route::get('period/expense/{period}', 'ExpenseController@index')->name('period.expense.index');
+
+//Income Resource
+Route::resource('income', 'IncomeController', ['except' => ['create']]);
+Route::get('income/create/{period}', 'IncomeController@create')->name('income.create');
+Route::get('period/income/{period}', 'IncomeController@index')->name('period.income.index');

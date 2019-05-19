@@ -15,7 +15,14 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('period_id')->unsigned();
+            $table->float('quantity');
+            $table->string('concept');
+            $table->string('movement_type');
             $table->timestamps();
+        });
+        Schema::table('incomes', function (Blueprint $table){
+            $table->foreign('period_id')->references('id')->on('periods')->onUpdate('cascade');
         });
     }
 

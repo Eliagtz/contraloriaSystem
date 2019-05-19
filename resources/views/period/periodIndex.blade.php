@@ -32,7 +32,7 @@
                         <div class="row">
                             @if ($period->status == 1)
                                 <div class="col-md-6 col-sm-6 col-6">
-                                    <a href="#" class="btn btn-outline-secondary btn-block">Income</a>
+                                    <a href=" {{ route('period.income.index', $period->id) }} " class="btn btn-outline-secondary btn-block">Income</a>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-6">
                                     <a href=" {{ route('period.expense.index', $period->id) }} " class="btn btn-outline-secondary btn-block">Expense</a>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+Use App\Period;
 use App\Income;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IncomeController extends Controller
 {
@@ -12,9 +14,11 @@ class IncomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Period $period)
     {
-        //
+        $period->load('incomes');
+
+        return view('income.incomeIndex', compact('period'));
     }
 
     /**
@@ -22,9 +26,10 @@ class IncomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Period $period)
     {
-        //
+        $this->authorize('pass');
+        return view('income.incomeForm', compact('period'));
     }
 
     /**
@@ -35,7 +40,11 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validatorIncome($request->all())->validate();
+        $income = new Income($request->all());
+        $period = Period::find($request->period_id);
+        $period->incomes()->save($income);
+        return back()->with('Success', 'Income has been created success');
     }
 
     /**
@@ -46,7 +55,7 @@ class IncomeController extends Controller
      */
     public function show(Income $income)
     {
-        //
+        return view('income.incomeShow', compact('income'));
     }
 
     /**
@@ -57,7 +66,9 @@ class IncomeController extends Controller
      */
     public function edit(Income $income)
     {
-        //
+        $this->authorize('pass');
+        $period = $income->period;
+        return view('income.incomeForm', compact('income', 'period'));
     }
 
     /**
@@ -69,7 +80,10 @@ class IncomeController extends Controller
      */
     public function update(Request $request, Income $income)
     {
-        //
+        $this->authorize('pass');
+        $this->validatorIncome($request->all())->validate();
+        $income->fill($request->all())->save();
+        return redirect()->route('income.show', compact('income', 'period'));
     }
 
     /**
@@ -81,5 +95,15 @@ class IncomeController extends Controller
     public function destroy(Income $income)
     {
         //
+    }
+
+    protected function validatorIncome(array $data)
+    {
+        return Validator::make($data, [
+            'period_id' => ['exists:periods,id', 'required'],
+            'quantity' => ['required'],
+            'concept' => ['required', 'string', 'min:30', 'max:255'],
+            'movement_type' => ['required'],
+        ]);
     }
 }

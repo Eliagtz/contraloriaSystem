@@ -18,4 +18,9 @@ class Period extends Model
     {
         return $this->hasMany('App\Expense');
     }
+
+    public function incomes()
+    {
+        return $this->hasMany('App\Income');
+    }
 }

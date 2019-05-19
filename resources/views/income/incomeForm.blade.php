@@ -7,7 +7,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <strong>New Expense</strong>
+                    <strong>New Income</strong>
                 </div>
                 <div class="card-body">
                     @if(session()->has('Success'))
@@ -18,11 +18,11 @@
                         </div>
                     @endif
 
-                    @if(isset($expense))
-                        <form action="{{ route('expense.update', $expense->id) }}" method="post">
+                    @if(isset($income))
+                        <form action="{{ route('income.update', $income->id) }}" method="post">
                             {{ method_field('PATCH') }}
                     @else 
-                        <form action="{{ route('expense.store') }}" method="POST">
+                        <form action="{{ route('income.store') }}" method="POST">
                     @endif
 
                         @csrf
@@ -31,8 +31,8 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="quantity">Total $:</label>
                                 <div class="col-md-9">
-                                <input class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" type="float" name="quantity" placeholder="Expense quantity.." value="{{ isset($expense) ? $expense->quantity : old('quantity') }}">
-                                        <span class="help-block">Please enter the expense quantity</span>
+                                <input class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" type="float" name="quantity" placeholder="Income quantity.." value="{{ isset($income) ? $income->quantity : old('quantity') }}">
+                                        <span class="help-block">Please enter the income quantity</span>
                                         @if ($errors->has('quantity'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('quantity') }}</strong>
@@ -43,8 +43,8 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="concept">Concept:</label>
                                 <div class="col-md-9">
-                                    <input class="form-control{{ $errors->has('concept') ? ' is-invalid' : '' }}" id="concept" type="string" name="concept" placeholder="Concept.." value="{{ isset($expense) ? $expense->concept : old('concept') }}">
-                                        <span class="help-block">Please enter the expense concept</span>
+                                    <input class="form-control{{ $errors->has('concept') ? ' is-invalid' : '' }}" id="concept" type="string" name="concept" placeholder="Concept.." value="{{ isset($income) ? $income->concept : old('concept') }}">
+                                        <span class="help-block">Please enter the income concept</span>
                                         @if ($errors->has('concept'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('concept') }}</strong>
@@ -72,7 +72,7 @@
                             <div class="col-md-3">
                                 <a href="{{ URL::previous() }}" class="btn btn-block btn-warning text-secondary" role="button">Cancel</a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3">  
                                 <button class="btn btn-block btn-danger" type="reset">Reset</button>
                             </div>
                             <div class="col-md-3">

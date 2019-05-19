@@ -37,6 +37,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
+        $this->authorize('pass');
         return view('period.periodForm');
     }
 
@@ -75,6 +76,7 @@ class PeriodController extends Controller
      */
     public function edit(Period $period)
     {
+        $this->authorize('pass');
         return view('period.periodForm', compact('period'));
     }
 
@@ -87,6 +89,7 @@ class PeriodController extends Controller
      */
     public function update(Request $request, Period $period)
     {
+        $this->authorize('pass');
         $this->validatorPeriodEdit($request->all())->validate();
         $period->final_fund = $request->initial_fund;
         $period->fill($request->all())->save();
@@ -101,6 +104,7 @@ class PeriodController extends Controller
      */
     public function destroy(Period $period)
     {
+        $this->authorize('pass');
         $period->status = 0;
         $period->save();
         return redirect()->route('period.index');

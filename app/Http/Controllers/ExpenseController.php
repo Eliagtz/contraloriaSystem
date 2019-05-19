@@ -29,6 +29,7 @@ class ExpenseController extends Controller
      */
     public function create(Period $period)
     {
+        $this->authorize('pass');
         return view('expense.expenseForm', compact('period'));
     }
 
@@ -66,6 +67,7 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
+        $this->authorize('pass');
         $period = $expense->period;
         return view('expense.expenseForm', compact('expense', 'period'));
     }
@@ -79,7 +81,10 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+        $this->authorize('pass');
+        $this->validatorExpense($request->all())->validate();
+        $expense->fill($request->all())->save();
+        return redirect()->route('expense.show', compact('expense', 'period'));
     }
 
     /**

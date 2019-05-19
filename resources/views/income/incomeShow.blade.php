@@ -6,21 +6,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            @if(isset($expense))
+            @if(isset($income))
                 
                 <div class="card border-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header text-info"><strong> Period: </strong> {{ $expense->period_id }} </div>
+                    <div class="card-header text-info"><strong> Period: </strong> {{ $income->period_id }} </div>
                         <div class="card-body text-info">
-                            <h6 class="card-text"><strong> Expense id: </strong> {{ $expense->id }} </h6>
-                            <h6 class="card-text"><strong> Quantity: </strong> {{ $expense->quantity }} </h6>
-                            <p class="card-text"><strong> Description: </strong> {{ $expense->concept }} </p>
+                            <h6 class="card-text"><strong> Expense id: </strong> {{ $income->id }} </h6>
+                            <h6 class="card-text"><strong> Quantity: </strong> {{ $income->quantity }} </h6>
+                            <p class="card-text"><strong> Description: </strong> {{ $income->concept }} </p>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{ route('period.expense.index', $expense->period->id) }}" class="btn btn-secondary">Back</a>
+                                    <a href="{{ route('period.income.index', $income->period->id) }}" class="btn btn-secondary">Back</a>
                                 </div>
                                 @can('pass')
                                 <div class="col-6">
-                                    <a href="{{ route('expense.edit', $expense->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('income.edit', $income->id) }}" class="btn btn-primary">Edit</a>
                                 </div>
                                 @endcan
                             </div>

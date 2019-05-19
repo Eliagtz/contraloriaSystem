@@ -22,13 +22,17 @@
                                             <a href="{{ route('period.index') }}" class="btn btn-secondary">Back</a>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="{{ route('period.edit', $period->id) }}" class="btn btn-primary">Edit</a>
+                                                @can('pass')
+                                                    <a href="{{ route('period.edit', $period->id) }}" class="btn btn-primary">Edit</a>
+                                                @endcan
                                         </div>
                                         <div class="col-md-4">
                                             <form action="{{ route('period.destroy', $period->id) }}" method="POST">
                                                     {{ method_field('DELETE') }}
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    @can('pass')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    @endcan
                                             </form>
                                         </div>
                                     </div>
