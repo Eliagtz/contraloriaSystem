@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class Admin
+class AdminPolicy
 {
     use HandlesAuthorization;
 
@@ -18,7 +18,6 @@ class Admin
     {
         //
     }
-
     public function pass(User $user)
     {
         return $user->roles->first()->description == 'Administrator';

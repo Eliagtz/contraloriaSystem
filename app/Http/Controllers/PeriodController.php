@@ -35,9 +35,9 @@ class PeriodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         return view('period.periodForm');
     }
 
@@ -49,6 +49,7 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('pass', $request->user());
         $this->validatorPeriod($request->all())->validate();
         $period = new Period($request->all());
         $period->final_fund = $request->initial_fund;
@@ -74,9 +75,9 @@ class PeriodController extends Controller
      * @param  \App\Period  $period
      * @return \Illuminate\Http\Response
      */
-    public function edit(Period $period)
+    public function edit(Period $period, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         return view('period.periodForm', compact('period'));
     }
 
@@ -89,7 +90,7 @@ class PeriodController extends Controller
      */
     public function update(Request $request, Period $period)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $this->validatorPeriodEdit($request->all())->validate();
         $period->final_fund = $request->initial_fund;
         $period->fill($request->all())->save();
@@ -102,9 +103,9 @@ class PeriodController extends Controller
      * @param  \App\Period  $period
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Period $period)
+    public function destroy(Period $period, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $period->status = 0;
         $period->save();
         return redirect()->route('period.index');

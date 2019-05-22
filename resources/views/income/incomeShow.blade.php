@@ -15,14 +15,17 @@
                             <h6 class="card-text"><strong> Quantity: </strong> {{ $income->quantity }} </h6>
                             <p class="card-text"><strong> Description: </strong> {{ $income->concept }} </p>
                             <div class="row">
-                                <div class="col-6">
-                                    <a href="{{ route('period.income.index', $income->period->id) }}" class="btn btn-secondary">Back</a>
-                                </div>
-                                @can('pass')
+                                
+                                @can('pass', Auth::user())
                                 <div class="col-6">
                                     <a href="{{ route('income.edit', $income->id) }}" class="btn btn-primary">Edit</a>
                                 </div>
+                                @else
+                                    <div class="col-6"></div>
                                 @endcan
+                                <div class="col-6">
+                                    <a href="{{ route('period.income.index', $income->period->id) }}" class="btn btn-secondary">Back</a>
+                                </div>
                             </div>
                         </div>
                     </div>

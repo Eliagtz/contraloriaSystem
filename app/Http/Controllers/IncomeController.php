@@ -26,9 +26,9 @@ class IncomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Period $period)
+    public function create(Period $period, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         return view('income.incomeForm', compact('period'));
     }
 
@@ -40,6 +40,7 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('pass', $request->user());
         $this->validatorIncome($request->all())->validate();
         $income = new Income($request->all());
         $period = Period::find($request->period_id);
@@ -64,9 +65,9 @@ class IncomeController extends Controller
      * @param  \App\Income  $income
      * @return \Illuminate\Http\Response
      */
-    public function edit(Income $income)
+    public function edit(Income $income, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $period = $income->period;
         return view('income.incomeForm', compact('income', 'period'));
     }
@@ -80,7 +81,7 @@ class IncomeController extends Controller
      */
     public function update(Request $request, Income $income)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $this->validatorIncome($request->all())->validate();
         $income->fill($request->all())->save();
         return redirect()->route('income.show', compact('income', 'period'));

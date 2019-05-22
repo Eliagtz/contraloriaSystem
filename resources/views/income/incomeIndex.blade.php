@@ -8,11 +8,14 @@
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="row">
-                        <div class="col-4"></div>
-                        <div class="col-4"><a class="btn btn-outline-danger btn-block btn-lg" href="{{ URL::previous() }}" role="button">Back</a></div>
-                        @can('pass')
-                            <div class="col-4"><a class="btn btn-outline-primary btn-block btn-lg" href="{{ route('income.create', $period->id) }}" role="button">New income</a></div>
+                        <div class="col-md-4 col-lg-6 col-xl-8 "></div>
+                        
+                        @can('pass', Auth::user())
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-primary btn-block" href="{{ route('income.create', $period->id) }}" role="button">New income</a></div>
+                        @else
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"></div>
                         @endcan
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-danger btn-block" href="{{ URL::previous() }}" role="button">Back</a></div>
                     </div>
                     <br>
 

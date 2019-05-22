@@ -12,7 +12,8 @@
                     Periods
                 </a>
                 <ul class="nav-dropdown-items">
-                    @can('pass')
+                
+                    @can('pass', Auth::user())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('period.create') }}">
                             <i class="icon-plus  "></i>

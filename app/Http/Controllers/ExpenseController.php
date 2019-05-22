@@ -27,9 +27,9 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Period $period)
+    public function create(Period $period, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         return view('expense.expenseForm', compact('period'));
     }
 
@@ -41,6 +41,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('pass', $request->user());
         $this->validatorExpense($request->all())->validate();
         $expense = new Expense($request->all());
         $period = Period::find($request->period_id);
@@ -65,9 +66,9 @@ class ExpenseController extends Controller
      * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expense $expense)
+    public function edit(Expense $expense, Request $request)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $period = $expense->period;
         return view('expense.expenseForm', compact('expense', 'period'));
     }
@@ -81,7 +82,7 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        $this->authorize('pass');
+        $this->authorize('pass', $request->user());
         $this->validatorExpense($request->all())->validate();
         $expense->fill($request->all())->save();
         return redirect()->route('expense.show', compact('expense', 'period'));
