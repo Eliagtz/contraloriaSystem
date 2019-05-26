@@ -92,4 +92,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Period');
     }
 
+    public function scopeActive($query, $flag)
+    {
+        return $query->where('status', $flag);
+    }
+
 }

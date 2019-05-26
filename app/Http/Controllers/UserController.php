@@ -12,10 +12,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $flag)
     {
-        $users = User::where('id', '<>', $request->user()->id)->with(['role'])->paginate(5);
-        return view('user.userIndex', compact('users'));
+        $users = User::active((boolean)$flag)->where('id', '<>', $request->user()->id)->with(['role'])->paginate(5);
+        return view('user.userIndex', compact('users', 'flag'));
     }
 
     /**

@@ -9,7 +9,7 @@
 
             @can('pass', Auth::user())
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('user.index') }}">
+                    <a class="nav-link " href="{{ route('user.index', 1) }}">
                         <i class="nav-icon icon-people"></i> Users
                     </a>
                 </li>

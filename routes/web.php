@@ -32,4 +32,4 @@ Route::resource('income', 'IncomeController', ['except' => ['create']])->middlew
 Route::get('income/create/{period}', 'IncomeController@create')->name('income.create')->middleware('verified');
 Route::get('period/income/{period}', 'IncomeController@index')->name('period.income.index')->middleware('verified');
 
-Route::resource('user', 'UserController', ['except' => ['create', 'store', 'edit', 'update', 'destroy', 'show']]);
+Route::get('user/all/{flag}', ['uses' => 'UserController@index'])->name('user.index')->middleware('verified');
