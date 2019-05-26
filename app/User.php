@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'photo'
+        'name', 'role_id', 'email', 'password', 'photo'
     ];
 
     /**
@@ -41,9 +41,9 @@ class User extends Authenticatable
      * This is a method from the relationship with the Role
      * 
      */
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function authorizeRoles($roles)
@@ -52,7 +52,7 @@ class User extends Authenticatable
         {
             return true;
         }
-        abort(401, 'Esta acción no está autorizada.');
+        abort(403, 'This action is not authorized.');
     }
 
     public function hasAnyRole($roles)
@@ -78,7 +78,7 @@ class User extends Authenticatable
     
     public function hasRole($role)
     {
-        if($this->roles()->where('description', $role)->first()){
+        if($this->role->description === $role){
             return true;
         }
         return false;

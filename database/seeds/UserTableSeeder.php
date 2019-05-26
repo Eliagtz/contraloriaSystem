@@ -1,6 +1,5 @@
 <?php
 
-use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,13 +13,16 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $role_admin = Role::where('description', 'Administrator')->first();
         $user->name = 'Elia Gutierrez';
+        $user->role_id = 1;
         $user->email = 'eliagtzsolis@gmail.com';
         $user->password = bcrypt('system123');
         $user->photo = 'assets/images/user.png';
+        $user->email_verified_at = now();
         $user->save();
-        $user->roles()->attach($role_admin);
+
+        factory(App\User::class, 15)->create();
+
 
     }
 }

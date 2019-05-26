@@ -20,6 +20,6 @@ class AdminPolicy
     }
     public function pass(User $user)
     {
-        return $user->roles->first()->description == 'Administrator';
+        return $user->role->description == 'Administrator';
     }
 }
