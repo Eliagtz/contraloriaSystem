@@ -6,16 +6,16 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             @if(isset($period))
-
-                
                     @if ($period->status == 1)                    
                         <div class="card border-info mb-3" style="max-width: 18rem;">
                             <div class="card-header text-info"><strong> Period: </strong> {{ $period->start }} to {{ $period->end }}</div>
                                 <div class="card-body text-info">
                                     <h6 class="card-text"><strong> Period id: </strong> {{ $period->id }} </h6>
                                     <h6 class="card-text"><strong> Created by: </strong> {{ $period->user->name }} </h6>
-                                    <h6 class="card-text"><strong> Initial fund: </strong> {{ $period->initial_fund }} </h6>
-                                    <h6 class="card-text"><strong> Final fund: </strong> {{ $period->final_fund }} </h6>
+                                    <h6 class="card-text"><strong> Initial fund: </strong>$ {{ number_format($period->initial_fund, 2) }} </h6>
+                                    <h6 class="card-text"><strong> Actual fund: </strong>$ {{ number_format($period->getActualFund(), 2) }} </h6>
+                                    <h6 class="card-text"><strong> Total expenses: </strong>$ {{ number_format($period->getTotalExpenses(), 2) }} </h6>
+                                    <h6 class="card-text"><strong> Total incomes: </strong>$ {{ number_format($period->getTotalIncomes(), 2) }} </h6>
                                     <p class="card-text"><strong> Description: </strong> {{ $period->description }} </p>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -45,8 +45,10 @@
                             <div class="card-body text-secondary">
                                 <h6 class="card-text"><strong> Period id: </strong> {{ $period->id }} </h6>
                                 <h6 class="card-text"><strong> Created by: </strong> {{ $period->user->name }} </h6>
-                                <h6 class="card-text"><strong> Initial fund: </strong> {{ $period->initial_fund }} </h6>
-                                <h6 class="card-text"><strong> Final fund: </strong> {{ $period->final_fund }} </h6>
+                                <h6 class="card-text"><strong> Initial fund: </strong>$ {{ number_format($period->initial_fund, 2) }} </h6>
+                                <h6 class="card-text"><strong> Final fund: </strong>$ {{ number_format($period->final_fund, 2) }} </h6>
+                                <h6 class="card-text"><strong> Total expenses: </strong>$ {{ number_format($period->getTotalExpenses(), 2) }} </h6>
+                                <h6 class="card-text"><strong> Total incomes: </strong>$ {{  number_format($period->getTotalIncomes(), 2) }} </h6>
                                 <p class="card-text"><strong> Description: </strong> {{ $period->description }} </p>
                                 <div class="row">
                                     <div class="col-md-4">

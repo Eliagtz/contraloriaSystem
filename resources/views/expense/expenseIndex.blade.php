@@ -11,11 +11,11 @@
                         
                         <div class="col-md-4 col-lg-6 col-xl-8"></div>
                         @can('pass', Auth::user())
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-primary btn-block btn-lg" href="{{ route('expense.create', $period->id) }}" role="button">New expense</a></div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-primary btn-block" href="{{ route('expense.create', $period->id) }}" role="button">New expense</a></div>
                         @else
                             <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"></div>
                         @endcan
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-danger btn-block btn-lg" href="{{ URL::previous() }}" role="button">Back</a></div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-danger btn-block" href="{{ route('period.index') }}" role="button">Back</a></div>
                     </div>
                     <br>
 

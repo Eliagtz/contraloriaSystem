@@ -23,4 +23,22 @@ class Period extends Model
     {
         return $this->hasMany('App\Income');
     }
+
+    public function getTotalExpenses()
+    {
+        $total = $this->expenses->sum('quantity');
+        return $total;
+    }
+
+    public function getTotalIncomes()
+    {
+        $total = $this->incomes->sum('quantity');
+        return $total;
+    }
+
+    public function getActualFund()
+    {
+        $total = $this->initial_fund + ($this->getTotalIncomes() -  $this->getTotalExpenses());
+        return $total;
+    }
 }

@@ -70,10 +70,10 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-3">
-                                <a href="{{ URL::previous() }}" class="btn btn-block btn-warning text-secondary" role="button">Cancel</a>
+                                
                             </div>
                             <div class="col-md-3">  
-                                <button class="btn btn-block btn-danger" type="reset">Reset</button>
+                                    <a href="{{ route('period.index')  }}" class="btn btn-block btn-warning text-secondary" role="button">Cancel</a>
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-block btn-primary" type="submit">Submit</button>

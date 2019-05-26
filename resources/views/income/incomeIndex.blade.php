@@ -15,7 +15,7 @@
                         @else
                             <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"></div>
                         @endcan
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-danger btn-block" href="{{ URL::previous() }}" role="button">Back</a></div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"><a class="btn btn-outline-danger btn-block" href="{{ route('period.index') }}" role="button">Back</a></div>
                     </div>
                     <br>
 

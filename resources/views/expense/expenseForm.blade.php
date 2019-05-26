@@ -68,14 +68,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3">
-                                <a href="{{ URL::previous() }}" class="btn btn-block btn-warning text-secondary" role="button">Cancel</a>
+                            <div class="col-3"></div>
+                            <div class="col-3">
+                                
                             </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-block btn-danger" type="reset">Reset</button>
+                            <div class="col-3">
+                                <a href="{{ route('period.index') }}" class="btn btn-block btn-warning text-secondary" role="button">Cancel</a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button class="btn btn-block btn-primary" type="submit">Submit</button>
                             </div>
                         </div>
