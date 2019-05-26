@@ -15,19 +15,21 @@
 Route::get('/', 'HomeController@index');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //Period Resource
-Route::resource('period', 'PeriodController');
+Route::resource('period', 'PeriodController')->middleware('verified');
 
 //Expense Resource
-Route::resource('expense', 'ExpenseController', ['except' => ['create']]);
-Route::get('expense/create/{period}', 'ExpenseController@create')->name('expense.create');
-Route::get('period/expense/{period}', 'ExpenseController@index')->name('period.expense.index');
+Route::resource('expense', 'ExpenseController', ['except' => ['create']])->middleware('verified');
+Route::get('expense/create/{period}', 'ExpenseController@create')->name('expense.create')->middleware('verified');
+Route::get('period/expense/{period}', 'ExpenseController@index')->name('period.expense.index')->middleware('verified');
 
 //Income Resource
-Route::resource('income', 'IncomeController', ['except' => ['create']]);
-Route::get('income/create/{period}', 'IncomeController@create')->name('income.create');
-Route::get('period/income/{period}', 'IncomeController@index')->name('period.income.index');
+Route::resource('income', 'IncomeController', ['except' => ['create']])->middleware('verified');
+Route::get('income/create/{period}', 'IncomeController@create')->name('income.create')->middleware('verified');
+Route::get('period/income/{period}', 'IncomeController@index')->name('period.income.index')->middleware('verified');
+
+Route::resource('user', 'UserController', ['except' => ['create', 'store', 'edit', 'update', 'destroy', 'show']]);

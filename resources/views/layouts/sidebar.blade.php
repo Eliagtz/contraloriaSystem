@@ -2,10 +2,18 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">
+                <a class="nav-link active" href="{{ route('home') }}">
                     <i class="nav-icon icon-menu"></i> Main menu
                 </a>
             </li>
+
+            @can('pass', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('user.index') }}">
+                        <i class="nav-icon icon-people"></i> Users
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle"  href="#">
                     <i class="icon-calendar "></i>
