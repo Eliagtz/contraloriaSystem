@@ -122,7 +122,7 @@ class PeriodController extends Controller
         return Validator::make($data, [
             'start' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:yesterday'],
             'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
-            'description' => ['required', 'string', 'min:30', 'max:255'],
+            'description' => ['required', 'string', 'min:15', 'max:255'],
             'initial_fund' => ['required'],
         ]);
     }
@@ -131,7 +131,7 @@ class PeriodController extends Controller
         return Validator::make($data, [
             'start' => ['date', 'date_format:Y-m-d', 'after_or_equal:yesterday'],
             'end' => ['required', 'date', 'date_format:Y-m-d', 'after:start'],
-            'description' => ['required', 'string', 'min:30', 'max:255'],
+            'description' => ['required', 'string', 'min:15', 'max:255'],
             'initial_fund' => ['required'],
         ]);
     }

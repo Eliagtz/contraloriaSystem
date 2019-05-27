@@ -104,7 +104,7 @@ class ExpenseController extends Controller
         return Validator::make($data, [
             'period_id' => ['exists:periods,id', 'required'],
             'quantity' => ['required'],
-            'concept' => ['required', 'string', 'min:30', 'max:255'],
+            'concept' => ['required', 'string', 'min:15', 'max:255'],
             'movement_type' => ['required'],
         ]);
     }
